@@ -1,8 +1,6 @@
-import React from "react";
-import "./product.scss";
-import { useState } from "react";
-import { useEffect } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import "./product.scss";
 
 function Product() {
   const URL = "http://localhost:4000/products";
@@ -28,12 +26,12 @@ function Product() {
   const DOLLAR_CURRENT_PRICE_IN_RUPEE = 82.68;
 
   function inRupee(dollar) {
-    const rs = (dollar * DOLLAR_CURRENT_PRICE_IN_RUPEE).toFixed(2);
+    const rs = (dollar * DOLLAR_CURRENT_PRICE_IN_RUPEE).toFixed(0);
     return rs;
   }
 
   function discountPrice(price, disPer) {
-    const discountPri = ((price * disPer) / 100).toFixed(2);
+    const discountPri = inRupee(((price * disPer) / 100).toFixed(0));
     return discountPri;
   }
 
@@ -46,7 +44,7 @@ function Product() {
     <>
       <main className="products">
         {products.map((product, index) => (
-          <div className="product" key={product.id}>
+          <div className="product" key={product.id + index}>
             <img
               loading="lazy"
               src={product.thumbnail}
@@ -60,18 +58,23 @@ function Product() {
             <div className="product__rating">
               {Array(ratingStar(product.rating))
                 .fill()
-                .map((_) => (
-                  <p>⭐</p>
+                .map((_, index) => (
+                  <p key={index}>⭐</p>
                 ))}
             </div>
 
             <div className="product__price">
-              ₹ {actualPrice(product.price, product.discountPercentage)}
-              M.R.P:
-              <del>
-                ₹{discountPrice(product.price, product.discountPercentage)}
-              </del>
-              <span>{product.discountPercentage}% off</span>
+              <span className="rupee-symbol"> ₹</span>
+              <span className="actual-price">
+                {actualPrice(product.price, product.discountPercentage)}
+              </span>
+              <div>
+                M.R.P:
+                <del>
+                  ₹{discountPrice(product.price, product.discountPercentage)}
+                </del>
+                (<span>{product.discountPercentage}% off</span>)
+              </div>
             </div>
             {/* <div className="product__price">
               ₹ price - (price * discountPercentage)/100 M.R.P:
