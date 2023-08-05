@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./product.scss";
 import { fetchAllProductsAsync, selectAllProducts } from "./productSlice";
+import { Link } from "react-router-dom";
 
 function Product() {
   const products = useSelector(selectAllProducts);
@@ -38,17 +39,18 @@ function Product() {
       <main className="products">
         {products.map((product, index) => (
           <div className="product" key={product.id + index}>
-            <div className="img-wrapper">
+            <Link to="#" className="img-wrapper">
               <img
                 loading="lazy"
                 src={product.thumbnail}
                 alt={product.title}
                 title={product.title}
               />
-            </div>
-            <div>
+            </Link>
+
+            <Link to="#" className="product__desc">
               {product.brand} {product.title} {product.description}
-            </div>
+            </Link>
 
             <div className="product__rating">
               {Array(ratingStar(product.rating))
@@ -58,7 +60,7 @@ function Product() {
                 ))}
             </div>
 
-            <div className="product__price">
+            <Link to="#" className="product__price">
               <span className="rupee-symbol"> ₹</span>
               <span className="actual-price">
                 {actualPrice(product.price, product.discountPercentage)}
@@ -70,7 +72,7 @@ function Product() {
                 </del>
                 (<span>{product.discountPercentage}% off</span>)
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </main>
