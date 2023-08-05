@@ -18,7 +18,7 @@
   }
 
   @media screen and (min-width: 1400px) {
-    // columns: 5;
+    columns: 5;
   }
 
   .product {
@@ -29,6 +29,19 @@
     border-radius: 5px;
     margin-block: 16px;
     background: #f7f7f7;
+    overflow: hidden;
+
+    > .img-wrapper {
+      overflow: hidden;
+
+      > img {
+        &:hover,
+        &:focus {
+          scale: 1.2;
+          transition: scale 500ms;
+        }
+      }
+    }
 
     &__rating {
       display: flex;
@@ -36,14 +49,10 @@
     }
 
     &__price {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-
       .rupee-symbol {
-        align-self: flex-start;
         padding-top: 4px;
         font-size: 12px;
+        float: left;
       }
 
       .actual-price {
@@ -51,13 +60,11 @@
       }
 
       > div {
-        align-self: flex-end;
-        padding-bottom: 3px;
         color: #565959;
         font-size: 14px;
 
         > del {
-          margin-right: 5px;
+          margin-inline: 5px;
         }
 
         > span {

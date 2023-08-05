@@ -45,12 +45,14 @@ function Product() {
       <main className="products">
         {products.map((product, index) => (
           <div className="product" key={product.id + index}>
-            <img
-              loading="lazy"
-              src={product.thumbnail}
-              alt={product.title}
-              title={product.title}
-            />
+            <div className="img-wrapper">
+              <img
+                loading="lazy"
+                src={product.thumbnail}
+                alt={product.title}
+                title={product.title}
+              />
+            </div>
             <div>
               {product.brand} {product.title} {product.description}
             </div>
