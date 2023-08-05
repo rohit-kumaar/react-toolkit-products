@@ -1,0 +1,16 @@
+.products {
+  columns: 2;
+  column-gap: 40px;
+
+  .product {
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px;
+    background: #f7f7f7;
+
+    &__rating {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

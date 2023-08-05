@@ -1,0 +1,62 @@
+/* ------------------- */
+/* Font family         */
+/* ------------------- */
+$primary-font: "Montserrat", sans-serif;
+
+/* ------------------- */
+/* Colors               */
+/* ------------------- */
+$black: hsl(0, 0%, 0%);
+$white: hsl(0, 0%, 100%);
+
+/* ------------------- */
+/* Font sizes          */
+/* ------------------- */
+
+$fs-16: 16px;
+
+/* ------------------- */
+/* Font weight         */
+/* ------------------- */
+$fw-400: 400;
+
+html {
+  box-sizing: border-box;
+  font-size: $fs-16;
+}
+
+body {
+  color: $black;
+  background: $white;
+  font-family: $primary-font;
+  font-weight: $fw-400;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+figure,
+blockquote {
+  padding: 0;
+  margin: 0;
+  font-weight: $fw-400;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

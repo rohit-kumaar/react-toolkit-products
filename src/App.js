@@ -1,10 +1,10 @@
 import React from "react";
-import Counter from "./features/counter/Counter";
+import Product from "./features/product/Product";
 
 function App() {
   return (
     <div>
-      <Counter />
+      <Product />
     </div>
   );
 }
