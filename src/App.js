@@ -1,6 +1,6 @@
 import React from "react";
-import Product from "./features/product/Product";
 import "./App.scss";
+import Product from "./features/product/Product";
 
 function App() {
   return (

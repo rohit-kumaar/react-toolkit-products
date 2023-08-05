@@ -1,22 +1,15 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./product.scss";
+import { fetchAllProductsAsync, selectAllProducts } from "./productSlice";
 
 function Product() {
-  const URL = "http://localhost:4000/products";
-
-  const [products, setProducts] = useState([]);
+  const products = useSelector(selectAllProducts);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get(URL)
-      .then((res) => {
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    dispatch(fetchAllProductsAsync());
+  }, [dispatch]);
 
   function ratingStar(rating) {
     const filledStar = Math.round(rating);
@@ -26,12 +19,12 @@ function Product() {
   const DOLLAR_CURRENT_PRICE_IN_RUPEE = 82.68;
 
   function inRupee(dollar) {
-    const rs = (dollar * DOLLAR_CURRENT_PRICE_IN_RUPEE).toFixed(0);
+    const rs = Math.round(dollar * DOLLAR_CURRENT_PRICE_IN_RUPEE);
     return rs;
   }
 
   function discountPrice(price, disPer) {
-    const discountPri = inRupee(((price * disPer) / 100).toFixed(0));
+    const discountPri = inRupee((price * disPer) / 100);
     return discountPri;
   }
 
@@ -78,11 +71,6 @@ function Product() {
                 (<span>{product.discountPercentage}% off</span>)
               </div>
             </div>
-            {/* <div className="product__price">
-              ₹ price - (price * discountPercentage)/100 M.R.P:
-              <del>₹ (price * discountPercentage)/100</del>
-              <span>(discountPercentage% off)</span>
-            </div> */}
           </div>
         ))}
       </main>

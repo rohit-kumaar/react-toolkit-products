@@ -1,9 +1,13 @@
-import productUrl from "../../config/urlPath";
+import { PRODUCT_API as api } from "../../config/urlPath";
 
-const PRODUCT_URL = "http://localhost:4000/products";
-
-export default async function productAPI() {
-  const res = await fetch(PRODUCT_URL);
-  const data = await res.json();
-  return data;
+async function fetchAllProducts() {
+  try {
+    const res = await fetch(api);
+    const data = await res.json();
+    return { data };
+  } catch (error) {
+    console.log(error);
+  }
 }
+
+export default fetchAllProducts;
