@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "./product.scss";
 import { fetchAllProductsAsync, selectAllProducts } from "./productSlice";
-import { Link } from "react-router-dom";
 
 function Product() {
   const products = useSelector(selectAllProducts);
