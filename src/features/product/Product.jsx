@@ -5,8 +5,10 @@ import "./product.scss";
 import { fetchAllProductsAsync, selectAllProducts } from "./productSlice";
 
 function Product() {
-  const products = useSelector(selectAllProducts);
+  const productsData = useSelector(selectAllProducts);
   const dispatch = useDispatch();
+
+  const products = productsData.products;
 
   useEffect(() => {
     dispatch(fetchAllProductsAsync());
@@ -37,7 +39,7 @@ function Product() {
   return (
     <>
       <main className="products">
-        {products.map((product, index) => (
+        {products?.map((product, index) => (
           <div className="product" key={product.id + index}>
             <Link to="#" className="img-wrapper">
               <img
